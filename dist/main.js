@@ -42,14 +42,17 @@ export function toggleFull(el = DOC_EL, options) {
     }
 }
 export function watchFull(el, callback) {
+    const cancel = () => {
+        el.onfullscreenchange = null;
+    };
     const handler = (event) => {
         if (null !== event.target) {
             callback(isFull(event.target));
         }
     };
     el[ON_FSC_PROP_NAME] = handler;
-    return () => {
-        el.onfullscreenchange = null;
+    return {
+        cancel
     };
 }
 //# sourceMappingURL=main.js.map
