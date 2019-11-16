@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+        }
+        main{
+            margin:20% auto;
+        }
+        button {
+            -webkit-appearance: none;
+            appearance: none;
+            padding: 10px 15px;
+            background-color: #69c;
+            color: #fff;
+            border: 0;
+        }
+
+        button:hover {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        p {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <button id="btn-full">全屏</button>
+        <button id="btn-exit">退出</button>
+        <button id="btn-toggle">切换全屏/退出</button>
+        <button id="btn-is-full">是否全屏</button>
+        <p id="text-1"></p>
+        <p>通过"<b>isFull</b>"手动判断当前是否全屏: <b id="text">false</b></p>
+    </main>
+
+    <script type="module">
+        import { beFull, toggleFull, exitFull, isFull, watchFull } from '../dist/main.min.js'
+        document.getElementById('btn-full').addEventListener('click', ev => {
+            beFull();
+        });
+        document.getElementById('btn-exit').addEventListener('click', ev => {
+            exitFull();
+        });
+        document.getElementById('btn-toggle').addEventListener('click', ev => {
+            toggleFull();
+        });
+        document.getElementById('btn-is-full').addEventListener('click', ev => {
+            document.getElementById('text').innerHTML = isFull(document.documentElement);
+        });
+
+        const t1 = document.getElementById('text-1');
+        watchFull(document.documentElement, ev => {
+            t1.innerHTML = `"<b>watchFull</b>"正在监听全屏状态:<b>${ev}</b>`;
+        })
+    </script>
+</body>
+
+</html>
