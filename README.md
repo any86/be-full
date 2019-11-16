@@ -14,6 +14,7 @@ npm i -S be-full
 
 ```javascript
 import {beFull} from 'be-full';
+
 // 整个网页全屏显示
 beFull();
 
