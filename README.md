@@ -21,25 +21,26 @@ beFull(document.getElementById('video'));
 
 ## 更多API(4个函数)
 
-#### exitFull(退出全屏)
+### exitFull(退出全屏)
 ```javascript
 exitFull();
 ```
 
-#### toggleFull(切换全屏/退出)
+### toggleFull(切换全屏/退出)
 使用方法同`beFull`, 只是第二次点击会执行`exitFull`
 ```javascript
 toggleFull();
+
 // 切换指定元素全屏/退出
 toggleFull(document.getElementById('video'));
 ```
 
-#### isFull(元素是否全屏)
+### isFull(元素是否全屏)
 ```javascript
 isFull(document.getElementById('video'));
 ```
 
-#### watchFull(监视元素全屏状态变化)
+### watchFull(监视元素全屏状态变化)
 ```javascript
 const {cancel} = watchFull(document.documentElement, ev => {
     // 全屏状态变化执行         
