@@ -81,6 +81,10 @@ export function toggleFull(el: HTMLElement = DOC_EL, options?: FullscreenOptions
  * @param  {(isFull: boolean) => void} 返回"是否全屏"
  */
 export function watchFull(el: HTMLElement, callback: (isFull: boolean) => void) {
+    const cancel = () => {
+        el.onfullscreenchange = null;
+    };
+
     const handler = (event: Event) => {
         if (null !== event.target) {
             callback(isFull(event.target));
@@ -89,8 +93,8 @@ export function watchFull(el: HTMLElement, callback: (isFull: boolean) => void) 
 
     // 这里addEventListener不好使
     el[ON_FSC_PROP_NAME] = handler;
-    
-    return () => {
-        el.onfullscreenchange = null;
+
+    return {
+        cancel
     }
 }
