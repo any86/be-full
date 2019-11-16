@@ -1,0 +1,37 @@
+{
+  "name": "be-full",
+  "version": "0.0.2",
+  "description": "🍔 任意元素全屏显示",
+  "main": "dist/main.min.js",
+  "unpkg": "dist/main.min.js",
+  "scripts": {
+    "demo": "npm run build && node scripts/demo",
+    "dev": "rimraf dist && tsc -w",
+    "build": "rimraf dist && tsc && terser dist/main.js -o dist/main.min.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/any86/be-full.git"
+  },
+  "keywords": [
+    "requestFullScreen",
+    "request-full-screen",
+    "full",
+    "screen"
+  ],
+  "author": "any86",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/any86/be-full/issues"
+  },
+  "homepage": "https://github.com/any86/be-full#readme",
+  "devDependencies": {
+    "chalk": "^3.0.0",
+    "gh-pages": "^2.1.1",
+    "rimraf": "^3.0.0",
+    "shelljs": "^0.8.3",
+    "terser": "^4.4.0",
+    "typescript": "^3.7.2"
+  }
+}
