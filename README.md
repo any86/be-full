@@ -1,4 +1,8 @@
-# be-full
+# be-full [![NPM Version][npm-image]][npm-url]
+
+[npm-image]: https://badgen.net/npm/v/be-full
+[npm-url]: https://npmjs.org/package/be-full
+
 🍔 任意元素**全屏**显示, 对[FullScreen API](https://caniuse.com/#search=Fullscreen)封装, 兼容常见浏览器.
 
 ## 在线演示
