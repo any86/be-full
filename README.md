@@ -3,7 +3,7 @@
 [npm-image]: https://badgen.net/npm/v/be-full
 [npm-url]: https://npmjs.org/package/be-full
 
-🍔 任意元素**全屏**显示, 对[FullScreen API](https://caniuse.com/#search=Fullscreen)封装, 兼容常见浏览器.
+🍔 任意元素**全屏**显示, 不到**1kb**.
 
 ## 在线演示
 [:rocket: 演示](https://any86.github.io/be-full/example/)
