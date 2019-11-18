@@ -3,7 +3,7 @@
 [npm-image]: https://badgen.net/npm/v/be-full
 [npm-url]: https://npmjs.org/package/be-full
 
-🍔 任意元素**全屏**显示, 支持pc/移动端, 不到**1kb**.
+🍔 任意元素**全屏**显示, 支持PC/移动端, 不到**1kb**.
 
 ## 在线演示
 [:rocket: 演示](https://any86.github.io/be-full/example/)
