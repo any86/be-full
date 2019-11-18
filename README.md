@@ -26,7 +26,7 @@ beFull();
 beFull(document.getElementById('video'));
 ```
 
-## 更多API(4个函数)
+## 🔥更多API(4个函数)
 
 ### exitFull(退出全屏)
 ```javascript
