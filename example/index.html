@@ -1,81 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>be-full</title>
-    <style>
-        .blue {
-            color: rgba(38, 154, 259, 1)
-        }
-
-        p {
-            font-size: 14px;
-        }
-
-        button {
-            cursor: pointer;
-            margin-top: 16px;
-            -webkit-appearance: none;
-            appearance: none;
-            padding: 10px 15px;
-            background-color: #269af9;
-            color: #fff;
-            border: 0 none;
-            outline: none;
-            box-shadow: 1px 2px 8px rgba(38, 154, 259, 0.6);
-            border-radius: 4px;
-        }
-
-        button:hover {
-            box-shadow: 1px 2px 8px rgba(38, 154, 259, 1);
-        }
-
-        button:active {
-            box-shadow: 1px 2px 8px rgba(38, 154, 259, 0.3) inset;
-        }
-
-        /* 具体布局 */
-        .row-el {
-            margin-top: 16px;
-        }
-
-        .row-el .view {
-            position: relative;
-            height: 300px;
-            width: 100%;
-            max-width: 640px;
-            line-height: 300px;
-            background: #000;
-            color: #fff;
-            font-size: 24px;
-            text-align: center;
-        }
-
-        .row-el .view button {
-            display: none;
-            position: absolute;
-            left:32px;
-            top:45%;
-            margin:auto;
-        }
-
-
-
-
-        /* 操作window全屏 */
-        .row-window {
-            margin-top: 16px;
-        }
-    </style>
+    <link rel="stylesheet" href="./index.css">
     <script>
         var exports = {}
     </script>
     <script src="../dist/main.min.js"></script>
 </head>
-
 <body>
     <header>
         <a href="https://github.com/any86/be-full">
@@ -85,12 +20,11 @@
         <section class="row-el">
             <h3>全屏任意元素</h3>
             <div id="view" class="view">
-                视频或图片
+                🦕视频或图片
                 <button id="btn-exit-el">退出全屏</button>
             </div>
             <button id="btn-full-el">全屏指定元素</button>
         </section>
-
         <section class="row-window">
             <h3>全屏页面</h3>
             <button id="btn-full">全屏</button>
@@ -98,7 +32,6 @@
             <button id="btn-toggle">切换全屏/退出</button>
             <button id="btn-is-full">是否全屏</button>
         </section>
-
     </main>
 
     <script>
@@ -127,14 +60,6 @@
         document.getElementById('btn-is-full').addEventListener('click', ev => {
             alert(exports.isFull(document.documentElement))
         });
-
-
-
-
-        // const t1 = document.getElementById('text-1');
-        // exports.watchFull(document.documentElement, ev => {
-        //     t1.innerHTML = `<b class="blue">watchFull</b>正在监听全屏状态:<b class="blue">${ev}</b>`;
-        // })
     </script>
 </body>
 
