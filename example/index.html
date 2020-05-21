@@ -7,34 +7,73 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>be-full</title>
     <style>
-        body {
-            display: flex;
-        }
-
-        main {
-            margin: 20% auto;
-        }
-
-        button {
-            -webkit-appearance: none;
-            appearance: none;
-            padding: 10px 15px;
-            background-color: #2196f3;
-            color: #fff;
-            border: 0 none;
-            outline: none;
-            box-shadow: 1px 0 8px rgba(0, 0, 0, 0.6);
-            border-radius: 2px;
-        }
-
-        button:active {
-            box-shadow: 1px 0 8px rgba(0, 0, 0, 0.3);
+        .blue {
+            color: rgba(38, 154, 259, 1)
         }
 
         p {
-            font-size: 16px;
+            font-size: 14px;
+        }
+
+        button {
+            cursor: pointer;
+            margin-top: 16px;
+            -webkit-appearance: none;
+            appearance: none;
+            padding: 10px 15px;
+            background-color: #269af9;
+            color: #fff;
+            border: 0 none;
+            outline: none;
+            box-shadow: 1px 2px 8px rgba(38, 154, 259, 0.6);
+            border-radius: 4px;
+        }
+
+        button:hover {
+            box-shadow: 1px 2px 8px rgba(38, 154, 259, 1);
+        }
+
+        button:active {
+            box-shadow: 1px 2px 8px rgba(38, 154, 259, 0.3) inset;
+        }
+
+        /* 具体布局 */
+        .row-el {
+            margin-top: 16px;
+        }
+
+        .row-el .view {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            max-width: 640px;
+            line-height: 300px;
+            background: #000;
+            color: #fff;
+            font-size: 24px;
+            text-align: center;
+        }
+
+        .row-el .view button {
+            display: none;
+            position: absolute;
+            left:32px;
+            top:45%;
+            margin:auto;
+        }
+
+
+
+
+        /* 操作window全屏 */
+        .row-window {
+            margin-top: 16px;
         }
     </style>
+    <script>
+        var exports = {}
+    </script>
+    <script src="../dist/main.min.js"></script>
 </head>
 
 <body>
@@ -43,33 +82,59 @@
             <img src="https://img.shields.io/github/stars/any86/be-full.svg?style=social" alt="star"></a>
     </header>
     <main>
-        <button id="btn-full">全屏</button>
-        <button id="btn-exit">退出</button>
-        <button id="btn-toggle">切换全屏/退出</button>
-        <button id="btn-is-full">是否全屏</button>
-        <p id="text-1"></p>
-        <p>通过"<b>isFull</b>"手动判断当前是否全屏: <b id="text">false</b></p>
+        <section class="row-el">
+            <h3>全屏任意元素</h3>
+            <div id="view" class="view">
+                视频或图片
+                <button id="btn-exit-el">退出全屏</button>
+            </div>
+            <button id="btn-full-el">全屏指定元素</button>
+        </section>
+
+        <section class="row-window">
+            <h3>全屏页面</h3>
+            <button id="btn-full">全屏</button>
+            <button id="btn-exit">退出</button>
+            <button id="btn-toggle">切换全屏/退出</button>
+            <button id="btn-is-full">是否全屏</button>
+        </section>
+
     </main>
 
-    <script type="module">
-        import { beFull, toggleFull, exitFull, isFull, watchFull } from '../dist/main.min.js'
-        document.getElementById('btn-full').addEventListener('click', ev => {
-            beFull();
-        });
-        document.getElementById('btn-exit').addEventListener('click', ev => {
-            exitFull();
-        });
-        document.getElementById('btn-toggle').addEventListener('click', ev => {
-            toggleFull();
-        });
-        document.getElementById('btn-is-full').addEventListener('click', ev => {
-            document.getElementById('text').innerHTML = isFull(document.documentElement);
+    <script>
+        // el
+        var el = document.getElementById('view');
+        document.getElementById('btn-full-el').addEventListener('click', ev => {
+            document.getElementById('btn-exit-el').style.display = 'block';
+            exports.beFull(el);
         });
 
-        const t1 = document.getElementById('text-1');
-        watchFull(document.documentElement, ev => {
-            t1.innerHTML = `"<b>watchFull</b>"正在监听全屏状态:<b>${ev}</b>`;
-        })
+        document.getElementById('btn-exit-el').addEventListener('click', ev => {
+            document.getElementById('btn-exit-el').style.display = 'none';
+            exports.exitFull();
+        });
+
+        // window
+        document.getElementById('btn-full').addEventListener('click', ev => {
+            exports.beFull();
+        });
+        document.getElementById('btn-exit').addEventListener('click', ev => {
+            exports.exitFull();
+        });
+        document.getElementById('btn-toggle').addEventListener('click', ev => {
+            exports.toggleFull();
+        });
+        document.getElementById('btn-is-full').addEventListener('click', ev => {
+            alert(exports.isFull(document.documentElement))
+        });
+
+
+
+
+        // const t1 = document.getElementById('text-1');
+        // exports.watchFull(document.documentElement, ev => {
+        //     t1.innerHTML = `<b class="blue">watchFull</b>正在监听全屏状态:<b class="blue">${ev}</b>`;
+        // })
     </script>
 </body>
 
