@@ -1,6 +1,6 @@
 {
   "name": "be-full",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "🍔 任意元素全屏显示",
   "main": "dist/main.min.js",
   "unpkg": "dist/main.min.js",
@@ -8,7 +8,7 @@
   "scripts": {
     "demo": "npm run build && node scripts/demo",
     "dev": "rimraf dist && tsc -w",
-    "build": "rimraf dist && tsc && terser dist/main.js -c  -m toplevel=true -o dist/main.min.js",
+    "build": "rimraf dist && tsc && terser dist/main.js -c  -m toplevel=true -o dist/main.min.js && standard-version && npm publish",
     "test": "jest"
   },
   "repository": {
@@ -34,5 +34,8 @@
     "shelljs": "^0.8.3",
     "terser": "^4.4.0",
     "typescript": "^3.7.2"
+  },
+  "dependencies": {
+    "standard-version": "^9.1.0"
   }
 }
