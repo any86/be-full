@@ -27,6 +27,11 @@
     "url": "https://github.com/any86/be-full/issues"
   },
   "homepage": "https://github.com/any86/be-full#readme",
+  "files": [
+    "src",
+    "dist/*.js",
+    "types/*.d.ts"
+  ],
   "devDependencies": {
     "chalk": "^3.0.0",
     "gh-pages": "^2.1.1",
