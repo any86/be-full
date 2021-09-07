@@ -16,13 +16,16 @@ npm i -S be-full
 
 ## 快速开始
 
+
+### 整个网页全屏显示
 ```javascript
 import {beFull} from 'be-full';
-
-// 整个网页全屏显示
 beFull();
 
-// 指定元素全屏
+```
+
+### 指定元素全屏
+```javascript
 beFull(document.getElementById('video'));
 ```
 
