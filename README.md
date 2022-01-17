@@ -14,7 +14,7 @@
 npm i -S be-full
 ```
 
-## 快速开始
+## ⚡ 快速开始
 
 
 ### 整个网页全屏显示
@@ -26,7 +26,8 @@ beFull();
 
 ### 指定元素全屏
 ```javascript
-beFull(document.getElementById('video'));
+const el = document.getElementById('video');
+beFull(el);
 ```
 
 ## 🔥更多API(4个函数)
