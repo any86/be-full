@@ -8,7 +8,8 @@
   "scripts": {
     "demo": "npm run build && node scripts/demo",
     "dev": "rimraf dist && tsc -w",
-    "build": "rimraf dist && tsc && terser dist/main.js -c  -m toplevel=true -o dist/main.min.js && standard-version && npm publish",
+    "build": "rimraf dist && tsc && terser dist/main.js -c  -m toplevel=true -o dist/main.min.js",
+    "release": "npm run build && standard-version && npm publish",
     "test": "jest"
   },
   "repository": {
