@@ -3,10 +3,7 @@
 [npm-image]: https://badgen.net/npm/v/be-full
 [npm-url]: https://npmjs.org/package/be-full
 
-🍔 任意元素**全屏**显示, 支持PC/移动端, 不到**1kb**.
-
-## 在线演示
-[:rocket: 演示](https://any86.github.io/be-full/example/)
+**全屏显示**, 支持PC/移动端, 不到**1kb**. [:rocket:在线演示](https://any86.github.io/be-full/example/)
 
 ## 安装
 
@@ -16,28 +13,25 @@ npm i -S be-full
 
 ## ⚡ 快速开始
 
-
-### 整个网页全屏显示
+##### 网页全屏
 ```javascript
 import {beFull} from 'be-full';
 beFull();
-
 ```
-
-### 指定元素全屏
+##### 元素全屏
 ```javascript
 const el = document.getElementById('video');
 beFull(el);
 ```
 
-## 🔥更多API(4个函数)
+## 🔥 API
 
-### exitFull(退出全屏)
+##### exitFull(退出全屏)
 ```javascript
 exitFull();
 ```
 
-### toggleFull(切换全屏/退出)
+##### toggleFull(切换全屏/退出)
 使用方法同`beFull`, 只是第二次点击会执行`exitFull`
 ```javascript
 toggleFull();
@@ -46,17 +40,7 @@ toggleFull();
 toggleFull(document.getElementById('video'));
 ```
 
-### isFull(元素是否全屏)
+##### isFull(元素是否全屏)
 ```javascript
-isFull(document.getElementById('video'));
-```
-
-### watchFull(监视元素全屏状态变化)
-```javascript
-const stop = watchFull(document.documentElement, ev => {
-    // 全屏状态变化执行         
-});
-
-// 取消监听
-stop();
+isFull(document.getElementById('video')); // true或者false
 ```

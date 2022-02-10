@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     </script>
     <script src="../dist/main.js"></script>
 </head>
+
 <body>
     <header>
         <a href="https://github.com/any86/be-full">
@@ -48,7 +50,7 @@
         });
         // window
         document.getElementById('btn-full').addEventListener('click', ev => {
-           exports.beFull();
+            exports.beFull();
         });
         document.getElementById('btn-exit').addEventListener('click', ev => {
             exports.exitFull();
@@ -59,9 +61,6 @@
         document.getElementById('btn-is-full').addEventListener('click', ev => {
             alert(exports.isFull(document.documentElement))
         });
-        const {cancel} = exports.watchFull(el, is=>{
-            console.log(is);
-        })
     </script>
 </body>
 

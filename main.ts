@@ -13,59 +13,59 @@ type ONFSCPropName = 'onfullscreenchange' | 'onwebkitfullscreenchange' | 'onmozf
  */
 const DOC_EL = document.documentElement;
 
-let RFS_METHOD_NAME: RFSMethodName = 'requestFullscreen';
-let EFS_METHOD_NAME: EFSMethodName = 'exitFullscreen';
-let FSE_PROP_NAME: FSEPropName = 'fullscreenElement';
-let ON_FSC_PROP_NAME: ONFSCPropName = 'onfullscreenchange';
+let TYPE_REQUEST_FULL_SCREEN: RFSMethodName = 'requestFullscreen';
+let TYPE_EXIT_FULL_SCREEN: EFSMethodName = 'exitFullscreen';
+let TYPE_FULL_SCREEN_ELEMENT: FSEPropName = 'fullscreenElement';
+let TYPE_ON_FULL_SCREEN_CHANGE: ONFSCPropName = 'onfullscreenchange';
 
 if (`webkitRequestFullScreen` in DOC_EL) {
-    RFS_METHOD_NAME = 'webkitRequestFullScreen';
-    EFS_METHOD_NAME = 'webkitExitFullscreen';
-    FSE_PROP_NAME = 'webkitFullscreenElement';
-    ON_FSC_PROP_NAME = 'onwebkitfullscreenchange';
+    TYPE_REQUEST_FULL_SCREEN = 'webkitRequestFullScreen';
+    TYPE_EXIT_FULL_SCREEN = 'webkitExitFullscreen';
+    TYPE_FULL_SCREEN_ELEMENT = 'webkitFullscreenElement';
+    TYPE_ON_FULL_SCREEN_CHANGE = 'onwebkitfullscreenchange';
 } else if (`msRequestFullscreen` in DOC_EL) {
-    RFS_METHOD_NAME = 'msRequestFullscreen';
-    EFS_METHOD_NAME = 'msExitFullscreen';
-    FSE_PROP_NAME = 'msFullscreenElement';
-    ON_FSC_PROP_NAME = 'MSFullscreenChange';
+    TYPE_REQUEST_FULL_SCREEN = 'msRequestFullscreen';
+    TYPE_EXIT_FULL_SCREEN = 'msExitFullscreen';
+    TYPE_FULL_SCREEN_ELEMENT = 'msFullscreenElement';
+    TYPE_ON_FULL_SCREEN_CHANGE = 'MSFullscreenChange';
 } else if (`mozRequestFullScreen` in DOC_EL) {
-    RFS_METHOD_NAME = 'mozRequestFullScreen';
-    EFS_METHOD_NAME = 'mozCancelFullScreen';
-    FSE_PROP_NAME = 'mozFullScreenElement';
-    ON_FSC_PROP_NAME = 'onmozfullscreenchange';
+    TYPE_REQUEST_FULL_SCREEN = 'mozRequestFullScreen';
+    TYPE_EXIT_FULL_SCREEN = 'mozCancelFullScreen';
+    TYPE_FULL_SCREEN_ELEMENT = 'mozFullScreenElement';
+    TYPE_ON_FULL_SCREEN_CHANGE = 'onmozfullscreenchange';
 } else if (!(`requestFullscreen` in DOC_EL)) {
     throw `当前浏览器不支持Fullscreen API !`;
 }
 
 /**
  * 启用全屏
- * @param  {HTMLElement} 元素
- * @param  {FullscreenOptions} 选项
- * @returns {Promise}
+ * @param  元素
+ * @param   选项
  */
-export function beFull(el: HTMLElement = DOC_EL, options?: FullscreenOptions): Promise<void> {
-    return el[RFS_METHOD_NAME](options);
+export function beFull(el?: HTMLElement, options?: FullscreenOptions): Promise<void> {
+    const _el = el instanceof HTMLElement ? el : DOC_EL;
+    return _el[TYPE_REQUEST_FULL_SCREEN](options);
 }
 
 /**
  * 退出全屏
  */
 export function exitFull(): Promise<void> {
-    return document[EFS_METHOD_NAME]();
+    return document[TYPE_EXIT_FULL_SCREEN]();
 }
 
 /**
  * 元素是否全屏
- * @param {HTMLElement}
+ * @param 目标元素
  */
-export function isFull(el: HTMLElement | EventTarget): boolean {
-    return el === document[FSE_PROP_NAME]
+export function isFull(el: HTMLElement = DOC_EL): boolean {
+    return el === document[TYPE_FULL_SCREEN_ELEMENT]
 }
 
 /**
  * 切换全屏/关闭
- * @param  {HTMLElement} 目标元素
- * @returns {Promise}
+ * @param  目标元素
+ * @returns Promise
  */
 export function toggleFull(el: HTMLElement = DOC_EL, options?: FullscreenOptions): Promise<void> {
     if (isFull(el)) {
@@ -73,26 +73,4 @@ export function toggleFull(el: HTMLElement = DOC_EL, options?: FullscreenOptions
     } else {
         return beFull(el, options)
     }
-}
-
-/**
- * 当全屏/退出时触发
- * @param  {HTMLElement} 元素
- * @param  {(isFull: boolean) => void} 返回"是否全屏"
- */
-export function watchFull(el: HTMLElement, callback: (isFull: boolean) => void) {
-    const cancel = () => {
-        el[ON_FSC_PROP_NAME] = null;
-    };
-
-    const handler = (event: Event) => {
-        if (null !== event.target) {
-            callback(isFull(event.target));
-        }
-    }
-
-    // 这里addEventListener不好使
-    el[ON_FSC_PROP_NAME] = handler;
-
-    return cancel;
 }
