@@ -13,23 +13,23 @@ type ONFSCPropName = 'onfullscreenchange' | 'onwebkitfullscreenchange' | 'onmozf
  */
 const DOC_EL = document.documentElement;
 
-let RFC_METHOD_NAME: RFSMethodName = 'requestFullscreen';
+let RFS_METHOD_NAME: RFSMethodName = 'requestFullscreen';
 let EFS_METHOD_NAME: EFSMethodName = 'exitFullscreen';
 let FSE_PROP_NAME: FSEPropName = 'fullscreenElement';
 let ON_FSC_PROP_NAME: ONFSCPropName = 'onfullscreenchange';
 
 if (`webkitRequestFullScreen` in DOC_EL) {
-    RFC_METHOD_NAME = 'webkitRequestFullScreen';
+    RFS_METHOD_NAME = 'webkitRequestFullScreen';
     EFS_METHOD_NAME = 'webkitExitFullscreen';
     FSE_PROP_NAME = 'webkitFullscreenElement';
     ON_FSC_PROP_NAME = 'onwebkitfullscreenchange';
 } else if (`msRequestFullscreen` in DOC_EL) {
-    RFC_METHOD_NAME = 'msRequestFullscreen';
+    RFS_METHOD_NAME = 'msRequestFullscreen';
     EFS_METHOD_NAME = 'msExitFullscreen';
     FSE_PROP_NAME = 'msFullscreenElement';
     ON_FSC_PROP_NAME = 'MSFullscreenChange';
 } else if (`mozRequestFullScreen` in DOC_EL) {
-    RFC_METHOD_NAME = 'mozRequestFullScreen';
+    RFS_METHOD_NAME = 'mozRequestFullScreen';
     EFS_METHOD_NAME = 'mozCancelFullScreen';
     FSE_PROP_NAME = 'mozFullScreenElement';
     ON_FSC_PROP_NAME = 'onmozfullscreenchange';
@@ -44,7 +44,7 @@ if (`webkitRequestFullScreen` in DOC_EL) {
  * @returns {Promise}
  */
 export function beFull(el: HTMLElement = DOC_EL, options?: FullscreenOptions): Promise<void> {
-    return el[RFC_METHOD_NAME](options);
+    return el[RFS_METHOD_NAME](options);
 }
 
 /**
@@ -82,7 +82,7 @@ export function toggleFull(el: HTMLElement = DOC_EL, options?: FullscreenOptions
  */
 export function watchFull(el: HTMLElement, callback: (isFull: boolean) => void) {
     const cancel = () => {
-        el.onfullscreenchange = null;
+        el[ON_FSC_PROP_NAME] = null;
     };
 
     const handler = (event: Event) => {
@@ -94,7 +94,5 @@ export function watchFull(el: HTMLElement, callback: (isFull: boolean) => void) 
     // 这里addEventListener不好使
     el[ON_FSC_PROP_NAME] = handler;
 
-    return {
-        cancel
-    }
+    return cancel;
 }

@@ -9,7 +9,7 @@
     <script>
         var exports = {}
     </script>
-    <script src="../dist/main.min.js"></script>
+    <script src="../dist/main.js"></script>
 </head>
 <body>
     <header>
@@ -46,10 +46,9 @@
             document.getElementById('btn-exit-el').style.display = 'none';
             exports.exitFull();
         });
-
         // window
         document.getElementById('btn-full').addEventListener('click', ev => {
-            exports.beFull();
+           exports.beFull();
         });
         document.getElementById('btn-exit').addEventListener('click', ev => {
             exports.exitFull();
@@ -60,6 +59,9 @@
         document.getElementById('btn-is-full').addEventListener('click', ev => {
             alert(exports.isFull(document.documentElement))
         });
+        const {cancel} = exports.watchFull(el, is=>{
+            console.log(is);
+        })
     </script>
 </body>
 

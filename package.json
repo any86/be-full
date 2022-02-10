@@ -1,10 +1,10 @@
 {
   "name": "be-full",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "🍔 任意元素全屏显示",
   "main": "dist/main.min.js",
   "unpkg": "dist/main.min.js",
-  "types": "types/main.d.ts",
+  "types": "dist/main.d.ts",
   "scripts": {
     "demo": "npm run build && node scripts/demo",
     "dev": "rimraf dist && tsc -w",
@@ -29,9 +29,8 @@
   },
   "homepage": "https://github.com/any86/be-full#readme",
   "files": [
-    "src",
     "dist/*.js",
-    "types/*.d.ts"
+    "dist/*.d.ts"
   ],
   "devDependencies": {
     "chalk": "^3.0.0",
@@ -39,9 +38,7 @@
     "rimraf": "^3.0.0",
     "shelljs": "^0.8.3",
     "terser": "^4.4.0",
-    "typescript": "^3.7.2"
-  },
-  "dependencies": {
+    "typescript": "^3.7.2",
     "standard-version": "^9.1.0"
   }
 }

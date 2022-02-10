@@ -32,7 +32,7 @@
         // 是否生成声明文件
         "declaration": true,
         // 声明文件路径
-        "declarationDir": "./types",
+        "declarationDir": "./dist",
         // 此处设置为node,才能解析import xx from 'xx'
         "moduleResolution": "node"
     },

@@ -53,10 +53,10 @@ isFull(document.getElementById('video'));
 
 ### watchFull(监视元素全屏状态变化)
 ```javascript
-const {cancel} = watchFull(document.documentElement, ev => {
+const stop = watchFull(document.documentElement, ev => {
     // 全屏状态变化执行         
 });
 
 // 取消监听
-cancel();
+stop();
 ```
