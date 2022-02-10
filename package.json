@@ -1,6 +1,6 @@
 {
   "name": "be-full",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "🍔 任意元素全屏显示",
   "main": "dist/main.min.js",
   "unpkg": "dist/main.min.js",
