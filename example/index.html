@@ -52,9 +52,7 @@
         document.getElementById('btn-full').addEventListener('click', ev => {
             exports.beFull();
         });
-        document.getElementById('btn-exit').addEventListener('click', ev => {
-            exports.exitFull();
-        });
+        document.getElementById('btn-exit').addEventListener('click', exports.exitFull);
         document.getElementById('btn-toggle').addEventListener('click', ev => {
             exports.toggleFull();
         });

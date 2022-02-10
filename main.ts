@@ -38,13 +38,23 @@ if (`webkitRequestFullScreen` in DOC_EL) {
 }
 
 /**
+ * 如果传入的不是HTMLElement,
+ * 比如是EventTarget
+ * 那么返回document.documentElement
+ * @param el 目标元素
+ * @returns 目标元素或者document.documentElement
+ */
+function getCurrentElement(el?: HTMLElement) {
+    return el instanceof HTMLElement ? el : DOC_EL;
+}
+
+/**
  * 启用全屏
  * @param  元素
  * @param   选项
  */
 export function beFull(el?: HTMLElement, options?: FullscreenOptions): Promise<void> {
-    const _el = el instanceof HTMLElement ? el : DOC_EL;
-    return _el[TYPE_REQUEST_FULL_SCREEN](options);
+    return getCurrentElement(el)[TYPE_REQUEST_FULL_SCREEN](options);
 }
 
 /**
@@ -58,8 +68,8 @@ export function exitFull(): Promise<void> {
  * 元素是否全屏
  * @param 目标元素
  */
-export function isFull(el: HTMLElement = DOC_EL): boolean {
-    return el === document[TYPE_FULL_SCREEN_ELEMENT]
+export function isFull(el?: HTMLElement): boolean {
+    return getCurrentElement(el) === document[TYPE_FULL_SCREEN_ELEMENT]
 }
 
 /**
@@ -67,7 +77,7 @@ export function isFull(el: HTMLElement = DOC_EL): boolean {
  * @param  目标元素
  * @returns Promise
  */
-export function toggleFull(el: HTMLElement = DOC_EL, options?: FullscreenOptions): Promise<void> {
+export function toggleFull(el?: HTMLElement, options?: FullscreenOptions): Promise<void> {
     if (isFull(el)) {
         return exitFull();
     } else {
