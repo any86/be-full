@@ -1,7 +1,9 @@
-# be-full [![NPM Version][npm-image]][npm-url]
+# be-full [![NPM Version][npm-image]][npm-url] [![Size][size-image]][size-url]
 
 [npm-image]: https://badgen.net/npm/v/be-full
 [npm-url]: https://npmjs.org/package/be-full
+[size-image]: https://badgen.net/bundlephobia/minzip/be-full
+[size-url]: https://bundlephobia.com/result?p=be-full
 
 **全屏显示**, 支持PC/移动端, 不到**1kb**. [:rocket:在线演示](https://any86.github.io/be-full/example/)
 
