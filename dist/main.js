@@ -1,67 +1,68 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.toggleFull = exports.isFull = exports.exitFull = exports.beFull = void 0;
 var DOC_EL = document.documentElement;
-var RFC_METHOD_NAME = 'requestFullscreen';
-var EFS_METHOD_NAME = 'exitFullscreen';
-var FSE_PROP_NAME = 'fullscreenElement';
-var ON_FSC_PROP_NAME = 'onfullscreenchange';
+var headEl = DOC_EL.querySelector('head');
+var styleEl = document.createElement('style');
+var TYPE_REQUEST_FULL_SCREEN = 'requestFullscreen';
+var TYPE_EXIT_FULL_SCREEN = 'exitFullscreen';
+var TYPE_FULL_SCREEN_ELEMENT = 'fullscreenElement';
+var TYPE_ON_FULL_SCREEN_CHANGE = 'onfullscreenchange';
 if ("webkitRequestFullScreen" in DOC_EL) {
-    RFC_METHOD_NAME = 'webkitRequestFullScreen';
-    EFS_METHOD_NAME = 'webkitExitFullscreen';
-    FSE_PROP_NAME = 'webkitFullscreenElement';
-    ON_FSC_PROP_NAME = 'onwebkitfullscreenchange';
+    TYPE_REQUEST_FULL_SCREEN = 'webkitRequestFullScreen';
+    TYPE_EXIT_FULL_SCREEN = 'webkitExitFullscreen';
+    TYPE_FULL_SCREEN_ELEMENT = 'webkitFullscreenElement';
+    TYPE_ON_FULL_SCREEN_CHANGE = 'onwebkitfullscreenchange';
 }
 else if ("msRequestFullscreen" in DOC_EL) {
-    RFC_METHOD_NAME = 'msRequestFullscreen';
-    EFS_METHOD_NAME = 'msExitFullscreen';
-    FSE_PROP_NAME = 'msFullscreenElement';
-    ON_FSC_PROP_NAME = 'MSFullscreenChange';
+    TYPE_REQUEST_FULL_SCREEN = 'msRequestFullscreen';
+    TYPE_EXIT_FULL_SCREEN = 'msExitFullscreen';
+    TYPE_FULL_SCREEN_ELEMENT = 'msFullscreenElement';
+    TYPE_ON_FULL_SCREEN_CHANGE = 'MSFullscreenChange';
 }
 else if ("mozRequestFullScreen" in DOC_EL) {
-    RFC_METHOD_NAME = 'mozRequestFullScreen';
-    EFS_METHOD_NAME = 'mozCancelFullScreen';
-    FSE_PROP_NAME = 'mozFullScreenElement';
-    ON_FSC_PROP_NAME = 'onmozfullscreenchange';
+    TYPE_REQUEST_FULL_SCREEN = 'mozRequestFullScreen';
+    TYPE_EXIT_FULL_SCREEN = 'mozCancelFullScreen';
+    TYPE_FULL_SCREEN_ELEMENT = 'mozFullScreenElement';
+    TYPE_ON_FULL_SCREEN_CHANGE = 'onmozfullscreenchange';
 }
 else if (!("requestFullscreen" in DOC_EL)) {
     throw "\u5F53\u524D\u6D4F\u89C8\u5668\u4E0D\u652F\u6301Fullscreen API !";
 }
-function beFull(el, options) {
-    if (el === void 0) { el = DOC_EL; }
-    return el[RFC_METHOD_NAME](options);
+function getCurrentElement(el) {
+    return el instanceof HTMLElement ? el : DOC_EL;
+}
+function beFull(el, backgroundColor) {
+    if (backgroundColor) {
+        if (null === headEl) {
+            headEl = document.createElement('head');
+        }
+        styleEl.innerHTML = ":fullscreen{background-color:" + backgroundColor + ";}";
+        headEl.appendChild(styleEl);
+    }
+    return getCurrentElement(el)[TYPE_REQUEST_FULL_SCREEN]();
 }
 exports.beFull = beFull;
 function exitFull() {
-    return document[EFS_METHOD_NAME]();
+    if (DOC_EL.contains(styleEl)) {
+        headEl === null || headEl === void 0 ? void 0 : headEl.removeChild(styleEl);
+    }
+    return document[TYPE_EXIT_FULL_SCREEN]();
 }
 exports.exitFull = exitFull;
 function isFull(el) {
-    return el === document[FSE_PROP_NAME];
+    return getCurrentElement(el) === document[TYPE_FULL_SCREEN_ELEMENT];
 }
 exports.isFull = isFull;
-function toggleFull(el, options) {
-    if (el === void 0) { el = DOC_EL; }
+function toggleFull(el, backgroundColor) {
     if (isFull(el)) {
-        return exitFull();
+        exitFull();
+        return false;
     }
     else {
-        return beFull(el, options);
+        beFull(el, backgroundColor);
+        return true;
     }
 }
 exports.toggleFull = toggleFull;
-function watchFull(el, callback) {
-    var cancel = function () {
-        el.onfullscreenchange = null;
-    };
-    var handler = function (event) {
-        if (null !== event.target) {
-            callback(isFull(event.target));
-        }
-    };
-    el[ON_FSC_PROP_NAME] = handler;
-    return {
-        cancel: cancel
-    };
-}
-exports.watchFull = watchFull;
 //# sourceMappingURL=main.js.map

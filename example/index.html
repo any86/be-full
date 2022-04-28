@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,9 @@
     <script>
         var exports = {}
     </script>
-    <script src="../dist/main.min.js"></script>
+    <script src="../dist/main.js"></script>
 </head>
+
 <body>
     <header>
         <a href="https://github.com/any86/be-full">
@@ -39,21 +41,18 @@
         var el = document.getElementById('view');
         document.getElementById('btn-full-el').addEventListener('click', ev => {
             document.getElementById('btn-exit-el').style.display = 'block';
-            exports.beFull(el);
+            exports.beFull(el,'#f10');
         });
 
         document.getElementById('btn-exit-el').addEventListener('click', ev => {
             document.getElementById('btn-exit-el').style.display = 'none';
             exports.exitFull();
         });
-
         // window
         document.getElementById('btn-full').addEventListener('click', ev => {
             exports.beFull();
         });
-        document.getElementById('btn-exit').addEventListener('click', ev => {
-            exports.exitFull();
-        });
+        document.getElementById('btn-exit').addEventListener('click', exports.exitFull);
         document.getElementById('btn-toggle').addEventListener('click', ev => {
             exports.toggleFull();
         });
