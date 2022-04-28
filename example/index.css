@@ -1,59 +1,66 @@
 .blue {
-    color: rgba(38, 154, 259, 1)
+  color: rgba(38, 154, 259, 1);
 }
 
 p {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 button {
-    cursor: pointer;
-    margin-top: 16px;
-    -webkit-appearance: none;
-    appearance: none;
-    padding: 10px 15px;
-    background-color: #269af9;
-    color: #fff;
-    border: 0 none;
-    outline: none;
-    box-shadow: 1px 2px 8px rgba(38, 154, 259, 0.6);
-    border-radius: 4px;
+  cursor: pointer;
+  margin-top: 16px;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 10px 15px;
+  background-color: #269af9;
+  color: #fff;
+  border: 0 none;
+  outline: none;
+  box-shadow: 1px 2px 8px rgba(38, 154, 259, 0.6);
+  border-radius: 4px;
 }
 
 button:hover {
-    box-shadow: 1px 2px 8px rgba(38, 154, 259, 1);
+  box-shadow: 1px 2px 8px rgba(38, 154, 259, 1);
 }
 
 button:active {
-    box-shadow: 1px 2px 8px rgba(38, 154, 259, 0.3) inset;
+  box-shadow: 1px 2px 8px rgba(38, 154, 259, 0.3) inset;
 }
 
 /* 具体布局 */
 .row-el {
-    margin-top: 16px;
+  margin-top: 16px;
 }
 
 .row-el .view {
-    position: relative;
-    height: 300px;
-    width: 100%;
-    max-width: 640px;
-    line-height: 300px;
-    background: #000;
-    color: #fff;
-    font-size: 24px;
-    text-align: center;
+  position: relative;
+  height: 300px;
+  width: 100%;
+  max-width: 640px;
+  line-height: 300px;
+  background: #269af9;
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  animation: ChangeColor 9s infinite;
+}
+
+@keyframes ChangeColor {
+  50% {
+    background-color: #000;
+  }
 }
 
 .row-el .view button {
-    display: none;
-    position: absolute;
-    left: 32px;
-    top: 45%;
-    margin: auto;
+  display: none;
+  position: absolute;
+  left: 32px;
+  top: 45%;
+  margin: auto;
 }
 
 /* 操作window全屏 */
 .row-window {
-    margin-top: 16px;
+  margin-top: 16px;
 }

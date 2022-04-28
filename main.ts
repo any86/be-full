@@ -12,7 +12,8 @@ type ONFSCPropName = 'onfullscreenchange' | 'onwebkitfullscreenchange' | 'onmozf
  * https://www.wikimoe.com/?post=82
  */
 const DOC_EL = document.documentElement;
-
+let headEl = DOC_EL.querySelector('head');
+const styleEl = document.createElement('style');
 let TYPE_REQUEST_FULL_SCREEN: RFSMethodName = 'requestFullscreen';
 let TYPE_EXIT_FULL_SCREEN: EFSMethodName = 'exitFullscreen';
 let TYPE_FULL_SCREEN_ELEMENT: FSEPropName = 'fullscreenElement';
@@ -53,14 +54,24 @@ function getCurrentElement(el?: HTMLElement) {
  * @param  元素
  * @param   选项
  */
-export function beFull(el?: HTMLElement, options?: FullscreenOptions): Promise<void> {
-    return getCurrentElement(el)[TYPE_REQUEST_FULL_SCREEN](options);
+export function beFull(el?: HTMLElement, backgroundColor?: string): Promise<void> {
+    if (backgroundColor) {
+        if (null === headEl) {
+            headEl = document.createElement('head');
+        }
+        styleEl.innerHTML = `:fullscreen{background-color:${backgroundColor};}`;
+        headEl.appendChild(styleEl);
+    }
+    return getCurrentElement(el)[TYPE_REQUEST_FULL_SCREEN]();
 }
 
 /**
  * 退出全屏
  */
 export function exitFull(): Promise<void> {
+    if (DOC_EL.contains(styleEl)) {
+        headEl?.removeChild(styleEl)
+    }
     return document[TYPE_EXIT_FULL_SCREEN]();
 }
 
@@ -77,10 +88,12 @@ export function isFull(el?: HTMLElement): boolean {
  * @param  目标元素
  * @returns Promise
  */
-export function toggleFull(el?: HTMLElement, options?: FullscreenOptions): Promise<void> {
+export function toggleFull(el?: HTMLElement, backgroundColor?: string): boolean {
     if (isFull(el)) {
-        return exitFull();
+        exitFull();
+        return false;
     } else {
-        return beFull(el, options)
+        beFull(el, backgroundColor)
+        return true;
     }
 }
