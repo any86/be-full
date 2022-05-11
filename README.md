@@ -29,7 +29,7 @@ const el = document.getElementById("video");
 beFull(el);
 ```
 
-### 设置 css 属性":fullscreen"
+#### 设置 css 属性":fullscreen"
 
 当元素全屏后如果出现"黑色"间隙(也可能其他颜色),通过第二个参数可设置成指定颜色.
 ```javascript
