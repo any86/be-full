@@ -5,66 +5,56 @@
 [size-image]: https://badgen.net/bundlephobia/minzip/be-full
 [size-url]: https://bundlephobia.com/result?p=be-full
 
-**全屏显示**, 支持 PC/移动端, 不到**1kb**. [:rocket:在线演示](https://any86.github.io/be-full/example/)
+**Full screen display**, support PC/mobile, less than **1kb**. [:rocket:Online demo](https://any86.github.io/be-full/example/)
+## Language
+[中文](README.CN.md) | **English**
 
-## 安装
+## Install
 
 ```shell
 npm i -S be-full
 ```
 
-## ⚡ 快速开始
+## ⚡ quick start
 
-### 网页全屏
+##### web page full screen
 
 ```javascript
-import { beFull } from "be-full";
+import {beFull} from 'be-full';
 beFull();
 ```
-
-### 元素全屏
-
+##### element fullscreen
 ```javascript
-const el = document.getElementById("video");
+const el = document.getElementById('video');
 beFull(el);
 ```
+#### set css property ":fullscreen"
 
-#### 设置 css 属性":fullscreen"
-
-当元素全屏后如果出现"黑色"间隙(也可能其他颜色),通过第二个参数可设置成指定颜色.
-```javascript
+If there is a "black" gap (or other colors) when the element is full screen, the second parameter can be set to the specified color.
+````javascript
 const el = document.getElementById("video");
 beFull(el, "#fff");
-```
-**注意:** 执行"**exitFull**"或"**toggleFull**"后会自动取消":fullscreen"的设置.
+````
+**Note:** After executing "**exitFull**" or "**toggleFull**", the setting of ":fullscreen" will be automatically canceled.
+
 
 ## 🔥 API
 
-### exitFull
-
-退出全屏
-
+##### exitFull(Exit Full Screen)
 ```javascript
 exitFull();
 ```
 
-### toggleFull
+##### toggleFull (toggle full screen/exit)
+The method of use is the same as `beFull`, except that the second click will execute `exitFull`
+````javascript
+toggleFull();
 
-全屏/退出, 返回值表示"当前是否全屏".
+// Switch the specified element to full screen/exit
+toggleFull(document.getElementById('video'));
+````
 
-```javascript
-toggleFull(); // true | false
-
-// 切换指定元素全屏/退出
-toggleFull(document.getElementById("video"));
-
-// 设置":fullscreen"
-toggleFull(document.getElementById("video"),'#fff');
-
-```
-
-### isFull(元素是否全屏)
-
-```javascript
-isFull(document.getElementById("video")); // true或者false
-```
+##### isFull (whether the element is full screen)
+````javascript
+isFull(document.getElementById('video')); // true or false
+````
